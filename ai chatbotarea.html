@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmer supportt AI Chatbot Interface - Green Theme</title>
+    <title>Farmer support Chatbot </title>
     <style>
         
         :root {
-            --primary-green: #28a745; 
-            --light-green-gradient: #e6ffe6; 
+            --primary-green: #10aa34; 
+            --light-green-gradient: #c4dfc4; 
         }
 
         
@@ -189,19 +189,19 @@
         }
 
       
-        .typing-indicator {
+        /* .typing-indicator {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 60px;
             height: 35px;
-            background-color: #ffffff;
+            background-color: #932a2a;
             border-radius: 20px;
             padding: 5px 10px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-        }
+        } */
 
-        .dot {
+        /* .dot {
             width: 8px;
             height: 8px;
             
@@ -210,7 +210,7 @@
             margin: 0 3px;
             opacity: 0.8;
             animation: bounce 1.4s infinite ease-in-out;
-        }
+        } */
 
         .dot:nth-child(1) { animation-delay: -0.32s; }
         .dot:nth-child(2) { animation-delay: -0.16s; }
@@ -250,6 +250,19 @@
             margin-right: 10px;
         }
 
+        .input-bar {
+            padding: 10px;
+            display: flex;
+            gap: 5px;
+            border-top: 1px solid #eee;
+        }
+
+        input { flex: 1; padding: 10px; border-radius: 20px; border: 1px solid #ddd; outline: none; }
+
+        button { background: var(--primary-green); color: white; border: none; padding: 10px 15px; border-radius: 20px; cursor: pointer; }
+
+    
+
         .input-field-wrapper::before {
             content: 'Type a message to Agri-X';
             color: #aaa;
@@ -270,7 +283,7 @@
             cursor: pointer;
             flex-shrink: 0;
            
-            box-shadow: 0 2px 5px rgba(40, 167, 69, 0.4);
+            box-shadow: 0 2px 5px rgba(38, 161, 67, 0.4);
         }
 
         .send-icon {
@@ -281,6 +294,29 @@
             background-size: cover;
             transform: translate(1px, -1px);
         }
+
+           .message {
+            max-width: 80%;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .bot-msg { align-self: flex-start; background: white; border: 1px solid #ddd; }
+        .user-msg { align-self: flex-end; background: var(--primary-green); color: white; }
+
+        /* Input Bar */
+        .input-bar {
+            padding: 10px;
+            display: flex;
+            gap: 5px;
+            border-top: 1px solid #eee;
+        }
+
+        input { flex: 1; padding: 10px; border-radius: 20px; border: 1px solid #ddd; outline: none; }
+
+        button { background: var(--primary-green); color: white; border: none; padding: 10px 15px; border-radius: 20px; cursor: pointer; }
+
     </style>
 </head>
 <body>
@@ -303,9 +339,9 @@
         <span>Saturday at 7:30 PM</span>
     </div>
 
-    <div class="chat-area">
+    <div class="chat-area" id="chatBox">
         <div class="message-container robo-message-container">
-            <div class="robo-avatar-small">R</div>
+            <div class="robo-avatar-small">🚛</div>
             <div>
                 <div class="robo-choice">Hey farmer! I am agri-bot . How are you today?</div>
                 <div class="robo-choice">Do you have a question?</div>
@@ -328,18 +364,78 @@
             </div>
         </div>
     </div>
-
-    <div class="input-area">
+  
+    <!-- <div class="input-area">
         <div class="attachment-icon"></div>
         <div class="input-field-wrapper" type="text">
             </div>
         <div class="send-button">
             <div class="send-icon"></div>
-        </div>
+        </div> -->
+            <div class="input-bar">
+                <div class="attachment-icon"></div>
+        <input type="text" id="userInput" placeholder="Ask something...">
+        <button onclick="sendMessage()">Send</button>
+   </div>
     </div>
-</div>
+<script>
+     const chatBox = document.getElementById('chatBox');
+    const userInput = document.getElementById('userInput');
+    const feedbackModal = document.getElementById('feedbackModal');
+
+    function appendMessage(text, side) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${side}-msg`;
+        msgDiv.innerText = text;
+        chatBox.appendChild(msgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+        const text = userInput.value.trim();
+        if (text === "") return;
+
+        appendMessage(text, 'user');
+        userInput.value = "";
+
+        // Logic to trigger feedback
+        if (text.toLowerCase().includes("thank you")) {
+            setTimeout(() => {
+                appendMessage("You're very welcome! Glad I could help.", 'bot');
+                
+                // Show pop-up after 1 second
+                setTimeout(() => {
+                    feedbackModal.style.display = 'flex';
+                }, 1000);
+            }, 500);
+        } else {
+            // General bot response
+            setTimeout(() => {
+                appendMessage("I am here to support your farming needs!", 'bot');
+            }, 800);
+        }
+    }
+
+    // Feedback Logic
+    function rate(n) {
+        const stars = document.querySelectorAll('.stars span');
+        stars.forEach((s, index) => {
+            s.style.color = index < n ? '#f1c40f' : '#ddd';
+        });
+    }
+
+    function closeFeedback() {
+        feedbackModal.style.display = 'none';
+        alert("Thank you for your feedback!");
+    }
+
+    </script>
 
 </body>
 </html>
+
+
+
+
 
 
