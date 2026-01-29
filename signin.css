@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f0f7f4; /* Light greenish-gray background */
+    background-color: #f0f7f4; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,7 +28,7 @@ header .logo {
     gap: 5px;
     font-size: 14px;
     margin-bottom: 20px;
-    color: #2d6a4f; /* Dark green for logo */
+    color: #2d6a4f; 
 }
 
 .back-btn {
@@ -41,14 +41,14 @@ header .logo {
 }
 
 h1 {
-    color: #2d6a4f; /* Deep green heading */
+    color: #2d6a4f; 
     font-size: 28px;
     line-height: 1.2;
     margin-bottom: 30px;
 }
 
 .input-group {
-    background-color: #f1f8f5; /* Very light mint background */
+    background-color: #f1f8f5; 
     border-radius: 12px;
     padding: 12px 15px;
     margin-bottom: 15px;
@@ -58,7 +58,7 @@ h1 {
 
 .input-group .icon {
     margin-right: 10px;
-    color: #70a18a; /* Soft green icons */
+    color: #70a18a; 
 }
 
 .input-group input {
@@ -80,7 +80,6 @@ h1 {
     margin-bottom: 40px;
 }
 
-/* Updated Sign up button to Green */
 .signup-btn {
     background-color: #40916c; 
     color: white;
@@ -106,4 +105,27 @@ h1 {
     margin: 30px 0;
     color: #888;
     font-size: 12px;
+
+}
+
+.footer-text {
+    text-align: center;
+    position: relative;
+    margin: 30px 0;
+    color: #888;
+    font-size: 15px;
+}
+
+.footer-text button {
+   background-color: #40916c; 
+    color: white;
+    border: none;
+    width: 50%;
+    padding: 10px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(64, 145, 108, 0.3);
+    transition: background-color 0.3s ease;
 }
